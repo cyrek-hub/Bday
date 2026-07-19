@@ -30,6 +30,51 @@
   }
 })();
 
+// ===================== Intro gate (Do you love me?) =====================
+(function introGate() {
+  const overlay = document.getElementById("introOverlay");
+  const yesBtn = document.getElementById("introYes");
+  const noBtn = document.getElementById("introNo");
+  if (!overlay || !yesBtn || !noBtn) return;
+
+  function dodge() {
+    const margin = 16;
+    const rect = noBtn.getBoundingClientRect();
+    const maxLeft = Math.max(window.innerWidth - rect.width - margin, margin);
+    const maxTop = Math.max(window.innerHeight - rect.height - margin, margin);
+    const left = margin + Math.random() * (maxLeft - margin);
+    const top = margin + Math.random() * (maxTop - margin);
+
+    noBtn.classList.add("is-dodging");
+    noBtn.style.left = `${left}px`;
+    noBtn.style.top = `${top}px`;
+  }
+
+  noBtn.addEventListener("mouseover", dodge);
+  noBtn.addEventListener("focus", dodge);
+  noBtn.addEventListener(
+    "touchstart",
+    (e) => {
+      e.preventDefault();
+      dodge();
+    },
+    { passive: false }
+  );
+  // safety net in case a click still lands on it
+  noBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    dodge();
+  });
+
+  yesBtn.addEventListener("click", () => {
+    overlay.classList.add("is-hidden");
+    document.body.classList.remove("no-scroll");
+    window.setTimeout(() => {
+      overlay.style.display = "none";
+    }, 650);
+  });
+})();
+
 // ===================== Scroll reveal =====================
 (function scrollReveal() {
   const revealEls = document.querySelectorAll(".reveal");
