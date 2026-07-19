@@ -60,9 +60,7 @@
   --deep-rose: #a45d6b;
   --text-main: #5a3d43;
   --text-soft: #8a6a70;
-  --gold-accent: #e0b98f;
   --gold-shimmer: #f6d488;
-  --sparkle-white: #fffdf9;
 
   --font-script: "Great Vibes", cursive;
   --font-serif: "Cormorant Garamond", serif;
@@ -280,7 +278,7 @@ img {
   z-index: 4;
   pointer-events: none;
   opacity: 0;
-  background: linear-gradient(180deg, transparent 0%, #6b4a6e 35%, #2b2140 100%);
+  background: linear-gradient(180deg, transparent 0%, #a186a8 40%, #6e5480 100%);
   mix-blend-mode: multiply;
   transition: opacity 0.15s linear;
 }
@@ -292,6 +290,12 @@ img {
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.15s linear;
+}
+
+.stars-overlay::before {
+  content: "";
+  position: absolute;
+  inset: 0;
   background-image:
     radial-gradient(1.5px 1.5px at 10% 15%, #fff, transparent),
     radial-gradient(1.5px 1.5px at 25% 42%, #fff, transparent),

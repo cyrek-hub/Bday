@@ -116,10 +116,28 @@
         }
       });
     },
-    { threshold: 0.15, rootMargin: "0px 0px -60px 0px" }
+    { threshold: 0.15, rootMargin: "0px 0px -20px 0px" }
   );
 
   revealEls.forEach((el) => observer.observe(el));
+
+  // Safety net: elements near the very bottom of the page (like the
+  // footer's last line) can end up with no more scroll room left for
+  // the observer's margin to ever consider them intersecting. Once the
+  // user has scrolled to the bottom, just reveal whatever is left.
+  window.addEventListener(
+    "scroll",
+    () => {
+      const scrolledToBottom =
+        window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 4;
+      if (!scrolledToBottom) return;
+      document.querySelectorAll(".reveal:not(.is-visible)").forEach((el) => {
+        el.classList.add("is-visible");
+        observer.unobserve(el);
+      });
+    },
+    { passive: true }
+  );
 })();
 
 // ===================== Envelope open (birthday note) =====================
@@ -244,10 +262,10 @@ function spawnParticleBurst(x, y, options) {
     // ease so the shift is noticeable early in the scroll, not just near the footer
     const progress = Math.pow(rawProgress, 0.6);
 
-    skyTint.style.opacity = String(progress * 0.7);
+    skyTint.style.opacity = String(progress * 0.4);
 
     const starProgress = Math.min(Math.max((progress - 0.15) / 0.55, 0), 1);
-    starsOverlay.style.opacity = String(starProgress);
+    starsOverlay.style.opacity = String(starProgress * 0.8);
   }
 
   update();
