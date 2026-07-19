@@ -908,8 +908,8 @@ img {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   align-items: start;
-  gap: 3rem 2rem;
-  max-width: 900px;
+  gap: 3.5rem 2.5rem;
+  max-width: 1120px;
   margin: 0 auto;
   padding: 1.5rem 0.5rem 1rem;
 }
@@ -917,7 +917,7 @@ img {
 .polaroid-card {
   position: relative;
   background: #fffdfb;
-  padding: 0.8rem 0.8rem 1.1rem;
+  padding: 1rem 1rem 1.3rem;
   border-radius: 3px;
   box-shadow: 0 14px 30px -12px rgba(164, 93, 107, 0.35);
   transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease;
@@ -981,7 +981,7 @@ img {
 @media (max-width: 520px) {
   .polaroid-grid {
     grid-template-columns: 1fr;
-    max-width: 300px;
+    max-width: 320px;
     gap: 2.5rem;
   }
   .rotate-1, .rotate-3, .rotate-5 { transform: rotate(-2.5deg); }
