@@ -240,12 +240,14 @@ function spawnParticleBurst(x, y, options) {
 
   function update() {
     const scrollable = document.documentElement.scrollHeight - window.innerHeight;
-    const progress = scrollable > 0 ? Math.min(Math.max(window.scrollY / scrollable, 0), 1) : 0;
+    const rawProgress = scrollable > 0 ? Math.min(Math.max(window.scrollY / scrollable, 0), 1) : 0;
+    // ease so the shift is noticeable early in the scroll, not just near the footer
+    const progress = Math.pow(rawProgress, 0.6);
 
-    skyTint.style.opacity = String(progress * 0.45);
+    skyTint.style.opacity = String(progress * 0.7);
 
-    const starProgress = Math.min(Math.max((progress - 0.35) / 0.5, 0), 1);
-    starsOverlay.style.opacity = String(starProgress * 0.9);
+    const starProgress = Math.min(Math.max((progress - 0.15) / 0.55, 0), 1);
+    starsOverlay.style.opacity = String(starProgress);
   }
 
   update();
