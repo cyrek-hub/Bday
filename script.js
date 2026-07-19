@@ -35,6 +35,8 @@
   const overlay = document.getElementById("introOverlay");
   const yesBtn = document.getElementById("introYes");
   const noBtn = document.getElementById("introNo");
+  const music = document.getElementById("bgMusic");
+  const musicToggle = document.getElementById("musicToggle");
   if (!overlay || !yesBtn || !noBtn) return;
 
   function dodge() {
@@ -72,7 +74,25 @@
     window.setTimeout(() => {
       overlay.style.display = "none";
     }, 650);
+
+    if (music) {
+      music.volume = 0.55;
+      music.play().catch(() => {});
+    }
+    if (musicToggle) {
+      musicToggle.classList.add("is-visible");
+    }
   });
+
+  if (musicToggle && music) {
+    musicToggle.addEventListener("click", () => {
+      music.muted = !music.muted;
+      musicToggle.classList.toggle("is-muted", music.muted);
+      musicToggle.setAttribute("aria-pressed", String(!music.muted));
+      musicToggle.querySelector(".music-toggle-icon").textContent = music.muted ? "🔇" : "🎵";
+      musicToggle.setAttribute("aria-label", music.muted ? "Unmute music" : "Mute music");
+    });
+  }
 })();
 
 // ===================== Scroll reveal =====================

@@ -208,6 +208,61 @@ body.no-scroll {
   }
 }
 
+/* ===================== MUSIC TOGGLE ===================== */
+.music-toggle {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: 50%;
+  border: none;
+  background: linear-gradient(135deg, var(--rose-gold-deep), var(--deep-rose));
+  color: #fff;
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 10px 26px -8px rgba(164, 93, 107, 0.55);
+  z-index: 500;
+  opacity: 0;
+  transform: scale(0.8);
+  pointer-events: none;
+  transition: opacity 0.5s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.music-toggle.is-visible {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+}
+
+.music-toggle:hover {
+  transform: scale(1.08);
+  box-shadow: 0 14px 32px -8px rgba(164, 93, 107, 0.65);
+}
+
+.music-toggle-icon {
+  display: inline-block;
+  animation: heartbeat 2.4s ease-in-out infinite;
+}
+
+.music-toggle.is-muted .music-toggle-icon {
+  animation: none;
+  opacity: 0.75;
+}
+
+@media (max-width: 520px) {
+  .music-toggle {
+    bottom: 1.1rem;
+    right: 1.1rem;
+    width: 2.9rem;
+    height: 2.9rem;
+    font-size: 1.15rem;
+  }
+}
+
 ::selection {
   background: var(--rose-gold);
   color: #fff;
