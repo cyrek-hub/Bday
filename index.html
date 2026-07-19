@@ -213,13 +213,52 @@
   <div class="section-inner note-inner">
     <p class="section-kicker reveal">A Letter, Just For You</p>
     <h2 class="section-title reveal">My Dearest,</h2>
-    <div class="note-card reveal">
-      <p class="note-text">
-        [INSERT YOUR ROMANTIC BIRTHDAY NOTE HERE]
-      </p>
-      <div class="note-signoff">
-        <span class="signoff-line">Forever yours,</span>
-        <span class="signoff-name">Mustafa</span>
+
+    <div class="envelope-wrap reveal" id="envelopeWrap">
+      <button type="button" class="envelope" id="envelopeButton" aria-label="Open the letter">
+        <span class="envelope-flap" aria-hidden="true"></span>
+        <span class="envelope-body" aria-hidden="true">
+          <span class="envelope-seal">💌</span>
+        </span>
+        <span class="envelope-hint">Tap to open</span>
+      </button>
+
+      <div class="note-card note-hidden" id="noteCard">
+        <p class="note-text">
+          [INSERT YOUR ROMANTIC BIRTHDAY NOTE HERE]
+        </p>
+        <div class="note-signoff">
+          <span class="signoff-line">Forever yours,</span>
+          <span class="signoff-name">Mustafa</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TIME TOGETHER ===================== -->
+<section class="section counter-section" id="counter">
+  <div class="section-inner">
+    <p class="section-kicker reveal">Every Second Counts</p>
+    <h2 class="section-title reveal">Us, So Far</h2>
+    <p class="section-subtitle reveal">Since April 17, 2026</p>
+
+    <div class="counter-grid reveal" id="loveCounter" data-start="2026-04-17T00:00:00">
+      <div class="counter-stat">
+        <span class="counter-number" id="counterDays">0</span>
+        <span class="counter-label">Days</span>
+      </div>
+      <div class="counter-stat">
+        <span class="counter-number" id="counterHours">00</span>
+        <span class="counter-label">Hours</span>
+      </div>
+      <div class="counter-stat">
+        <span class="counter-number" id="counterMinutes">00</span>
+        <span class="counter-label">Minutes</span>
+      </div>
+      <div class="counter-stat">
+        <span class="counter-number" id="counterSeconds">00</span>
+        <span class="counter-label">Seconds</span>
       </div>
     </div>
   </div>

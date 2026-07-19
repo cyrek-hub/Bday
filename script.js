@@ -122,6 +122,102 @@
   revealEls.forEach((el) => observer.observe(el));
 })();
 
+// ===================== Envelope open (birthday note) =====================
+(function envelopeGate() {
+  const wrap = document.getElementById("envelopeWrap");
+  const button = document.getElementById("envelopeButton");
+  const noteCard = document.getElementById("noteCard");
+  if (!wrap || !button || !noteCard) return;
+
+  button.addEventListener("click", () => {
+    if (wrap.classList.contains("is-open")) return;
+    wrap.classList.add("is-open");
+
+    window.setTimeout(() => {
+      button.style.display = "none";
+      noteCard.classList.remove("note-hidden");
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => noteCard.classList.add("note-visible"));
+      });
+    }, 700);
+  });
+})();
+
+// ===================== Live "time together" counter =====================
+(function liveCounter() {
+  const grid = document.getElementById("loveCounter");
+  if (!grid) return;
+
+  const start = new Date(grid.dataset.start);
+  if (Number.isNaN(start.getTime())) return;
+
+  const daysEl = document.getElementById("counterDays");
+  const hoursEl = document.getElementById("counterHours");
+  const minutesEl = document.getElementById("counterMinutes");
+  const secondsEl = document.getElementById("counterSeconds");
+
+  function pad(n) {
+    return String(n).padStart(2, "0");
+  }
+
+  function tick() {
+    const diff = Math.max(Date.now() - start.getTime(), 0);
+    const days = Math.floor(diff / 86400000);
+    const hours = Math.floor((diff % 86400000) / 3600000);
+    const minutes = Math.floor((diff % 3600000) / 60000);
+    const seconds = Math.floor((diff % 60000) / 1000);
+
+    daysEl.textContent = String(days);
+    hoursEl.textContent = pad(hours);
+    minutesEl.textContent = pad(minutes);
+    secondsEl.textContent = pad(seconds);
+  }
+
+  tick();
+  setInterval(tick, 1000);
+})();
+
+// ===================== Click-anywhere heart burst =====================
+(function heartBurst() {
+  const symbols = ["♥", "♡", "✦", "✧"];
+  const colors = ["#d9a5a0", "#c17d84", "#f6d488", "#a45d6b"];
+
+  function spawnBurst(x, y) {
+    const count = 7;
+    for (let i = 0; i < count; i++) {
+      const particle = document.createElement("span");
+      particle.className = "heart-burst-particle";
+      particle.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+      particle.style.color = colors[Math.floor(Math.random() * colors.length)];
+      particle.style.left = `${x}px`;
+      particle.style.top = `${y}px`;
+      particle.style.fontSize = `${0.9 + Math.random() * 0.9}rem`;
+
+      const angle = (Math.PI * 2 * i) / count + (Math.random() * 0.6 - 0.3);
+      const distance = 40 + Math.random() * 55;
+      const dx = Math.cos(angle) * distance;
+      const dy = Math.sin(angle) * distance - 20;
+      const rot = (Math.random() * 90 - 45).toFixed(0);
+
+      particle.style.setProperty("--dx", `${dx}px`);
+      particle.style.setProperty("--dy", `${dy}px`);
+      particle.style.setProperty("--rot", `${rot}deg`);
+
+      document.body.appendChild(particle);
+      particle.addEventListener("animationend", () => particle.remove());
+      window.setTimeout(() => particle.remove(), 1200);
+    }
+  }
+
+  document.addEventListener("click", (e) => {
+    const target = e.target.closest(
+      "button, a, img.gallery-photo, img.polaroid-photo, img.calendar-photo"
+    );
+    if (!target) return;
+    spawnBurst(e.clientX, e.clientY);
+  });
+})();
+
 // ===================== Subtle hero parallax =====================
 (function heroParallax() {
   const hero = document.getElementById("hero");

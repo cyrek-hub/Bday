@@ -1091,6 +1091,186 @@ img {
   animation: shimmerText 7s linear infinite;
 }
 
+/* ===================== ENVELOPE ===================== */
+.envelope-wrap {
+  position: relative;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.envelope {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  padding: 0;
+  border: 1px solid rgba(217, 165, 160, 0.4);
+  border-radius: 16px;
+  background: linear-gradient(160deg, var(--blush-light), var(--blush));
+  box-shadow: 0 20px 45px -18px rgba(164, 93, 107, 0.4);
+  cursor: pointer;
+  overflow: visible;
+  transition: opacity 0.5s ease 0.35s, transform 0.5s ease 0.35s;
+}
+
+.envelope::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background:
+    linear-gradient(135deg, transparent 49%, rgba(193, 125, 132, 0.18) 50%, transparent 51%),
+    linear-gradient(-135deg, transparent 49%, rgba(193, 125, 132, 0.18) 50%, transparent 51%);
+  pointer-events: none;
+}
+
+.envelope-flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 56%;
+  background: linear-gradient(160deg, var(--rose-gold), var(--rose-gold-deep));
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  transform-origin: top center;
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  box-shadow: 0 6px 14px -8px rgba(164, 93, 107, 0.45);
+  z-index: 3;
+}
+
+.envelope-body {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.envelope-seal {
+  position: absolute;
+  top: 72%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  font-size: clamp(2rem, 5vw, 2.6rem);
+  filter: drop-shadow(0 4px 10px rgba(164, 93, 107, 0.4));
+  animation: heartbeat 1.8s ease-in-out infinite;
+}
+
+.envelope-hint {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 1rem;
+  z-index: 2;
+  text-align: center;
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: var(--text-soft);
+  font-size: clamp(0.8rem, 1.6vw, 0.95rem);
+}
+
+.envelope-wrap.is-open .envelope-flap {
+  transform: rotateX(-160deg);
+}
+
+.envelope-wrap.is-open .envelope {
+  opacity: 0;
+  transform: translateY(-16px) scale(0.96);
+  pointer-events: none;
+}
+
+.note-card.note-hidden {
+  display: none;
+}
+
+.note-card {
+  opacity: 0;
+  transform: translateY(18px) scale(0.98);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.note-card.note-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* ===================== TIME TOGETHER (COUNTER) ===================== */
+.counter-section {
+  background: linear-gradient(180deg, var(--cream) 0%, var(--blush-light) 100%);
+}
+
+.counter-grid {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: clamp(1.5rem, 5vw, 3.5rem);
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.counter-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.counter-number {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: clamp(2.2rem, 7vw, 3.4rem);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  background: linear-gradient(
+    100deg,
+    var(--deep-rose) 0%,
+    var(--gold-shimmer) 30%,
+    var(--rose-gold-deep) 60%,
+    var(--gold-shimmer) 90%
+  );
+  background-size: 260% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: var(--deep-rose);
+  animation: shimmerText 8s linear infinite;
+}
+
+.counter-label {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--rose-gold-deep);
+}
+
+@media (max-width: 520px) {
+  .counter-grid {
+    gap: 1.5rem 1.25rem;
+  }
+}
+
+/* ===================== HEART BURST ===================== */
+.heart-burst-particle {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10001;
+  pointer-events: none;
+  will-change: transform, opacity;
+  animation: heartBurstFly 0.85s ease-out forwards;
+}
+
+@keyframes heartBurstFly {
+  0% {
+    transform: translate(-50%, -50%) translate(0, 0) scale(0.5) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) translate(var(--dx), var(--dy)) scale(1.05) rotate(var(--rot));
+    opacity: 0;
+  }
+}
+
 /* ===================== FOOTER ===================== */
 .footer {
   position: relative;
