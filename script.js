@@ -232,35 +232,25 @@ function spawnParticleBurst(x, y, options) {
   });
 })();
 
-// ===================== Make a wish (blow out the candle) =====================
-(function makeAWish() {
-  const cake = document.getElementById("cakeButton");
-  const wishMessage = document.getElementById("wishMessage");
-  const relightButton = document.getElementById("relightButton");
-  if (!cake || !wishMessage || !relightButton) return;
+// ===================== Scroll-driven day-to-night sky =====================
+(function daytimeToNightSky() {
+  const skyTint = document.getElementById("skyTint");
+  const starsOverlay = document.getElementById("starsOverlay");
+  if (!skyTint || !starsOverlay) return;
 
-  cake.addEventListener("click", () => {
-    if (cake.classList.contains("is-blown")) return;
-    cake.classList.add("is-blown");
-    wishMessage.classList.add("is-visible");
-    relightButton.classList.add("is-visible");
+  function update() {
+    const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = scrollable > 0 ? Math.min(Math.max(window.scrollY / scrollable, 0), 1) : 0;
 
-    const rect = cake.getBoundingClientRect();
-    spawnParticleBurst(rect.left + rect.width / 2, rect.top, {
-      count: 22,
-      symbols: ["🎉", "🎊", "✨", "♥", "✦", "💫"],
-      colors: ["#d9a5a0", "#c17d84", "#f6d488", "#a45d6b", "#f8d7dd"],
-      minDistance: 60,
-      maxDistance: 150,
-      upwardBias: 60,
-    });
-  });
+    skyTint.style.opacity = String(progress * 0.45);
 
-  relightButton.addEventListener("click", () => {
-    cake.classList.remove("is-blown");
-    wishMessage.classList.remove("is-visible");
-    relightButton.classList.remove("is-visible");
-  });
+    const starProgress = Math.min(Math.max((progress - 0.35) / 0.5, 0), 1);
+    starsOverlay.style.opacity = String(starProgress * 0.9);
+  }
+
+  update();
+  window.addEventListener("scroll", update, { passive: true });
+  window.addEventListener("resize", update);
 })();
 
 // ===================== Subtle hero parallax =====================

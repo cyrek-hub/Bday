@@ -10,6 +10,10 @@
 </head>
 <body class="no-scroll">
 
+<!-- Scroll-driven day-to-night sky -->
+<div class="sky-tint" id="skyTint" aria-hidden="true"></div>
+<div class="stars-overlay" id="starsOverlay" aria-hidden="true"></div>
+
 <!-- ===================== INTRO GATE ===================== -->
 <div class="intro-overlay" id="introOverlay">
   <div class="sparkle-field" aria-hidden="true"></div>
@@ -314,30 +318,6 @@
         <span class="counter-number" id="counterSeconds">00</span>
         <span class="counter-label">Seconds</span>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== MAKE A WISH ===================== -->
-<section class="section wish-section" id="wish">
-  <div class="section-inner">
-    <p class="section-kicker reveal">Before You Go</p>
-    <h2 class="section-title reveal">Make A Wish</h2>
-    <p class="section-subtitle reveal">Blow out the candle 🕯️</p>
-
-    <div class="cake-wrap reveal">
-      <button type="button" class="cake" id="cakeButton" aria-label="Blow out the candle">
-        <span class="candle" aria-hidden="true">
-          <span class="flame" id="flame">🔥</span>
-          <span class="smoke" aria-hidden="true"></span>
-        </span>
-        <span class="cake-body" aria-hidden="true">
-          <span class="cake-layer cake-layer--top"></span>
-          <span class="cake-layer cake-layer--bottom"></span>
-        </span>
-      </button>
-      <p class="wish-message" id="wishMessage">🌟 Wish made — here's to the best year yet.</p>
-      <button type="button" class="relight-btn" id="relightButton">🕯️ light it again</button>
     </div>
   </div>
 </section>
