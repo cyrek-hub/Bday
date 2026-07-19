@@ -1,19 +1,24 @@
-// ===================== Floating hearts =====================
+// ===================== Floating hearts + sparkles =====================
 (function generateFloatingHearts() {
   const container = document.getElementById("floatingHearts");
   if (!container) return;
 
-  const symbols = ["♥", "♡"];
-  const count = window.innerWidth < 600 ? 10 : 18;
+  const heartSymbols = ["♥", "♡"];
+  const sparkleSymbols = ["✦", "✧", "⋆", "💫"];
+  const colors = ["#d9a5a0", "#c17d84", "#f6d488", "#fffdf9"];
+  const count = window.innerWidth < 600 ? 14 : 24;
 
   for (let i = 0; i < count; i++) {
+    const isSparkle = Math.random() < 0.4;
     const heart = document.createElement("span");
-    heart.className = "floating-heart";
+    heart.className = isSparkle ? "floating-heart is-sparkle" : "floating-heart";
+    const symbols = isSparkle ? sparkleSymbols : heartSymbols;
     heart.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+    heart.style.color = colors[Math.floor(Math.random() * colors.length)];
 
-    const size = 0.8 + Math.random() * 1.6;
+    const size = isSparkle ? 0.6 + Math.random() * 1.1 : 0.8 + Math.random() * 1.6;
     const left = Math.random() * 100;
-    const duration = 9 + Math.random() * 10;
+    const duration = isSparkle ? 6 + Math.random() * 6 : 9 + Math.random() * 10;
     const delay = Math.random() * 14;
 
     heart.style.left = `${left}vw`;
