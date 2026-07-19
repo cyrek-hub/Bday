@@ -177,44 +177,89 @@
   setInterval(tick, 1000);
 })();
 
+// ===================== Particle burst helper (hearts + confetti) =====================
+function spawnParticleBurst(x, y, options) {
+  const opts = options || {};
+  const count = opts.count || 7;
+  const symbols = opts.symbols || ["♥", "♡", "✦", "✧"];
+  const colors = opts.colors || ["#d9a5a0", "#c17d84", "#f6d488", "#a45d6b"];
+  const minDistance = opts.minDistance || 40;
+  const maxDistance = opts.maxDistance || 95;
+  const upwardBias = opts.upwardBias || 20;
+
+  for (let i = 0; i < count; i++) {
+    const particle = document.createElement("span");
+    particle.className = "heart-burst-particle";
+    particle.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+    particle.style.color = colors[Math.floor(Math.random() * colors.length)];
+    particle.style.left = `${x}px`;
+    particle.style.top = `${y}px`;
+    particle.style.fontSize = `${0.9 + Math.random() * 0.9}rem`;
+
+    const angle = (Math.PI * 2 * i) / count + (Math.random() * 0.6 - 0.3);
+    const distance = minDistance + Math.random() * (maxDistance - minDistance);
+    const dx = Math.cos(angle) * distance;
+    const dy = Math.sin(angle) * distance - upwardBias;
+    const rot = (Math.random() * 90 - 45).toFixed(0);
+
+    particle.style.setProperty("--dx", `${dx}px`);
+    particle.style.setProperty("--dy", `${dy}px`);
+    particle.style.setProperty("--rot", `${rot}deg`);
+
+    document.body.appendChild(particle);
+    particle.addEventListener("animationend", () => particle.remove());
+    window.setTimeout(() => particle.remove(), 1200);
+  }
+}
+
 // ===================== Click-anywhere heart burst =====================
 (function heartBurst() {
-  const symbols = ["♥", "♡", "✦", "✧"];
-  const colors = ["#d9a5a0", "#c17d84", "#f6d488", "#a45d6b"];
-
-  function spawnBurst(x, y) {
-    const count = 7;
-    for (let i = 0; i < count; i++) {
-      const particle = document.createElement("span");
-      particle.className = "heart-burst-particle";
-      particle.textContent = symbols[Math.floor(Math.random() * symbols.length)];
-      particle.style.color = colors[Math.floor(Math.random() * colors.length)];
-      particle.style.left = `${x}px`;
-      particle.style.top = `${y}px`;
-      particle.style.fontSize = `${0.9 + Math.random() * 0.9}rem`;
-
-      const angle = (Math.PI * 2 * i) / count + (Math.random() * 0.6 - 0.3);
-      const distance = 40 + Math.random() * 55;
-      const dx = Math.cos(angle) * distance;
-      const dy = Math.sin(angle) * distance - 20;
-      const rot = (Math.random() * 90 - 45).toFixed(0);
-
-      particle.style.setProperty("--dx", `${dx}px`);
-      particle.style.setProperty("--dy", `${dy}px`);
-      particle.style.setProperty("--rot", `${rot}deg`);
-
-      document.body.appendChild(particle);
-      particle.addEventListener("animationend", () => particle.remove());
-      window.setTimeout(() => particle.remove(), 1200);
-    }
-  }
-
   document.addEventListener("click", (e) => {
     const target = e.target.closest(
       "button, a, img.gallery-photo, img.polaroid-photo, img.calendar-photo"
     );
     if (!target) return;
-    spawnBurst(e.clientX, e.clientY);
+    spawnParticleBurst(e.clientX, e.clientY);
+  });
+})();
+
+// ===================== Polaroid flip (things I love about you) =====================
+(function polaroidFlip() {
+  document.querySelectorAll(".polaroid-flip").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      btn.classList.toggle("is-flipped");
+    });
+  });
+})();
+
+// ===================== Make a wish (blow out the candle) =====================
+(function makeAWish() {
+  const cake = document.getElementById("cakeButton");
+  const wishMessage = document.getElementById("wishMessage");
+  const relightButton = document.getElementById("relightButton");
+  if (!cake || !wishMessage || !relightButton) return;
+
+  cake.addEventListener("click", () => {
+    if (cake.classList.contains("is-blown")) return;
+    cake.classList.add("is-blown");
+    wishMessage.classList.add("is-visible");
+    relightButton.classList.add("is-visible");
+
+    const rect = cake.getBoundingClientRect();
+    spawnParticleBurst(rect.left + rect.width / 2, rect.top, {
+      count: 22,
+      symbols: ["🎉", "🎊", "✨", "♥", "✦", "💫"],
+      colors: ["#d9a5a0", "#c17d84", "#f6d488", "#a45d6b", "#f8d7dd"],
+      minDistance: 60,
+      maxDistance: 150,
+      upwardBias: 60,
+    });
+  });
+
+  relightButton.addEventListener("click", () => {
+    cake.classList.remove("is-blown");
+    wishMessage.classList.remove("is-visible");
+    relightButton.classList.remove("is-visible");
   });
 })();
 

@@ -139,33 +139,87 @@
     <div class="polaroid-grid reveal">
       <div class="polaroid-card rotate-1">
         <span class="polaroid-tape" aria-hidden="true"></span>
-        <img class="polaroid-photo" src="assets/images/favourite-1.jpg" alt="Maram" loading="lazy" />
-        <p class="polaroid-caption">That dumbass smile</p>
+        <button type="button" class="polaroid-flip" aria-label="Flip photo to see why">
+          <span class="polaroid-flip-inner">
+            <span class="polaroid-face polaroid-face--front">
+              <img class="polaroid-photo" src="assets/images/favourite-1.jpg" alt="Maram" loading="lazy" />
+            </span>
+            <span class="polaroid-face polaroid-face--back">
+              <span class="polaroid-note">That dumbass smile</span>
+            </span>
+          </span>
+        </button>
+        <p class="polaroid-hint">↻ tap to flip</p>
       </div>
       <div class="polaroid-card rotate-2">
         <span class="polaroid-tape" aria-hidden="true"></span>
-        <img class="polaroid-photo" src="assets/images/favourite-2.jpg" alt="Maram" loading="lazy" />
-        <p class="polaroid-caption">Your IBS</p>
+        <button type="button" class="polaroid-flip" aria-label="Flip photo to see why">
+          <span class="polaroid-flip-inner">
+            <span class="polaroid-face polaroid-face--front">
+              <img class="polaroid-photo" src="assets/images/favourite-2.jpg" alt="Maram" loading="lazy" />
+            </span>
+            <span class="polaroid-face polaroid-face--back">
+              <span class="polaroid-note">Your IBS</span>
+            </span>
+          </span>
+        </button>
+        <p class="polaroid-hint">↻ tap to flip</p>
       </div>
       <div class="polaroid-card rotate-3">
         <span class="polaroid-tape" aria-hidden="true"></span>
-        <img class="polaroid-photo" src="assets/images/favourite-3.jpg" alt="Maram" loading="lazy" />
-        <p class="polaroid-caption">Being the most caring and gentle person I've ever met</p>
+        <button type="button" class="polaroid-flip" aria-label="Flip photo to see why">
+          <span class="polaroid-flip-inner">
+            <span class="polaroid-face polaroid-face--front">
+              <img class="polaroid-photo" src="assets/images/favourite-3.jpg" alt="Maram" loading="lazy" />
+            </span>
+            <span class="polaroid-face polaroid-face--back">
+              <span class="polaroid-note">Being the most caring and gentle person I've ever met</span>
+            </span>
+          </span>
+        </button>
+        <p class="polaroid-hint">↻ tap to flip</p>
       </div>
       <div class="polaroid-card rotate-4">
         <span class="polaroid-tape" aria-hidden="true"></span>
-        <img class="polaroid-photo" src="assets/images/favourite-4.jpg" alt="Maram" loading="lazy" />
-        <p class="polaroid-caption">You make me feel so safe. I love you.</p>
+        <button type="button" class="polaroid-flip" aria-label="Flip photo to see why">
+          <span class="polaroid-flip-inner">
+            <span class="polaroid-face polaroid-face--front">
+              <img class="polaroid-photo" src="assets/images/favourite-4.jpg" alt="Maram" loading="lazy" />
+            </span>
+            <span class="polaroid-face polaroid-face--back">
+              <span class="polaroid-note">You make me feel so safe. I love you.</span>
+            </span>
+          </span>
+        </button>
+        <p class="polaroid-hint">↻ tap to flip</p>
       </div>
       <div class="polaroid-card rotate-5">
         <span class="polaroid-tape" aria-hidden="true"></span>
-        <img class="polaroid-photo" src="assets/images/favourite-5.jpg" alt="Maram" loading="lazy" />
-        <p class="polaroid-caption">Your confidence genuinely inspires me</p>
+        <button type="button" class="polaroid-flip" aria-label="Flip photo to see why">
+          <span class="polaroid-flip-inner">
+            <span class="polaroid-face polaroid-face--front">
+              <img class="polaroid-photo" src="assets/images/favourite-5.jpg" alt="Maram" loading="lazy" />
+            </span>
+            <span class="polaroid-face polaroid-face--back">
+              <span class="polaroid-note">Your confidence genuinely inspires me</span>
+            </span>
+          </span>
+        </button>
+        <p class="polaroid-hint">↻ tap to flip</p>
       </div>
       <div class="polaroid-card rotate-6">
         <span class="polaroid-tape" aria-hidden="true"></span>
-        <img class="polaroid-photo" src="assets/images/favourite-6.jpg" alt="Maram" loading="lazy" />
-        <p class="polaroid-caption">Our shared hobbies 😇</p>
+        <button type="button" class="polaroid-flip" aria-label="Flip photo to see why">
+          <span class="polaroid-flip-inner">
+            <span class="polaroid-face polaroid-face--front">
+              <img class="polaroid-photo" src="assets/images/favourite-6.jpg" alt="Maram" loading="lazy" />
+            </span>
+            <span class="polaroid-face polaroid-face--back">
+              <span class="polaroid-note">Our shared hobbies 😇</span>
+            </span>
+          </span>
+        </button>
+        <p class="polaroid-hint">↻ tap to flip</p>
       </div>
     </div>
   </div>
@@ -260,6 +314,30 @@
         <span class="counter-number" id="counterSeconds">00</span>
         <span class="counter-label">Seconds</span>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== MAKE A WISH ===================== -->
+<section class="section wish-section" id="wish">
+  <div class="section-inner">
+    <p class="section-kicker reveal">Before You Go</p>
+    <h2 class="section-title reveal">Make A Wish</h2>
+    <p class="section-subtitle reveal">Blow out the candle 🕯️</p>
+
+    <div class="cake-wrap reveal">
+      <button type="button" class="cake" id="cakeButton" aria-label="Blow out the candle">
+        <span class="candle" aria-hidden="true">
+          <span class="flame" id="flame">🔥</span>
+          <span class="smoke" aria-hidden="true"></span>
+        </span>
+        <span class="cake-body" aria-hidden="true">
+          <span class="cake-layer cake-layer--top"></span>
+          <span class="cake-layer cake-layer--bottom"></span>
+        </span>
+      </button>
+      <p class="wish-message" id="wishMessage">🌟 Wish made — here's to the best year yet.</p>
+      <button type="button" class="relight-btn" id="relightButton">🕯️ light it again</button>
     </div>
   </div>
 </section>
